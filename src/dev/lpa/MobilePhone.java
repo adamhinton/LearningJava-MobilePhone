@@ -21,6 +21,27 @@ public class MobilePhone {
         return false;
     }
 
+    public boolean updateContact(Contact oldContact, Contact newContact){
+        int oldContactIndex = findContact(oldContact);
+        if(oldContactIndex == -1){
+            return false;
+        }
+
+        myContacts.set(oldContactIndex, newContact);
+        return true;
+
+    }
+
+    public boolean removeContact(Contact contactToRemove){
+        int indexToRemove = findContact(contactToRemove);
+        if(indexToRemove == -1){
+            return false;
+        }
+
+        myContacts.remove(indexToRemove);
+        return true;
+    }
+
     private int findContact(Contact contactToSearch){
 
         for(int i = 0; i<myContacts.size(); i++){
@@ -43,6 +64,20 @@ public class MobilePhone {
 
     }
 
+    public Contact queryContact(String contactName){
+        int indexOfContact = findContact(contactName);
+        return indexOfContact == -1 ? null : myContacts.get(indexOfContact);
+    }
+
+    public void printContacts() {
+        System.out.println("Contact List:");
+
+        int contactNumber = 1;
+        for (Contact contact : myContacts) {
+            System.out.printf("%d. %s -> %s\n", contactNumber, contact.getName(), contact.getPhoneNumber());
+            contactNumber++;
+        }
+    }
 
 
 }
