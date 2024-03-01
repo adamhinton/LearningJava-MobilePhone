@@ -14,7 +14,7 @@ public class MobilePhone {
 
     public boolean addNewContact(Contact contact){
 
-        if(findContact(contact) != -1){
+        if(findContact(contact) == -1){
             myContacts.add(contact);
             return true;
         }
