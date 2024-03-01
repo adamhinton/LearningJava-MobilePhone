@@ -12,14 +12,60 @@ public class MobilePhone {
         this.myContacts = new ArrayList<>();
     }
 
-    // TODO: findContact()
-    public void addNewContact(Contact contact){
+    public boolean addNewContact(Contact contact){
 
-        myContacts.add(contact);
+        if(findContact(contact) != -1){
+            myContacts.add(contact);
+            return true;
+        }
+        return false;
     }
+
+    private int findContact(Contact contactToSearch){
+
+        for(int i = 0; i<myContacts.size(); i++){
+            if(myContacts.get(i).getName() == contactToSearch.getName()){
+                return i;
+            }
+        }
+        return -1;
+
+    }
+
+    private int findContact(String contactName){
+
+        for(int i = 0; i<myContacts.size(); i++){
+            if(myContacts.get(i).getName() == contactName){
+                return i;
+            }
+        }
+        return -1;
+
+    }
+
+
+
 }
 
 
 class Contact{
+    private String name;
+    private String phoneNumber;
 
+    public Contact(String name, String phoneNumber) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public static Contact createContact(String name, String phoneNumber){
+        return new Contact(name, phoneNumber);
+    }
 }
